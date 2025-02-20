@@ -1,0 +1,45 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".java.DetailActivity">
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/home"
+        android:layout_gravity="center"
+        android:id="@+id/detail_search_image"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="styleid"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/detail_styleid"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="brands_filter_facet"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/detail_brands_filter_facet"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="price"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/detail_price"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="product_additional_info"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/detail_product_additional_info"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add to cart"
+        android:id="@+id/detail_btnAddToCart"
+        android:layout_gravity="center"/>
+</LinearLayout>
