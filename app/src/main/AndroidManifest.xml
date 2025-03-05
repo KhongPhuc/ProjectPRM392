@@ -16,6 +16,26 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".java.ChangeInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".java.ChangePassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".java.MyAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".java.LoginActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
             android:name=".java.DetailActivity"
             android:exported="false" />
         <activity
@@ -24,11 +44,7 @@
         <activity
             android:name=".java.HomePage"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".java.ForgotPassword"

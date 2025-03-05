@@ -1,45 +1,87 @@
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".java.DetailActivity">
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/home"
-        android:layout_gravity="center"
-        android:id="@+id/detail_search_image"/>
-    <TextView
+    tools:context="java.DetailActivity"
+    android:padding="16dp">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="styleid"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/detail_styleid"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="brands_filter_facet"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/detail_brands_filter_facet"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="price"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/detail_price"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="product_additional_info"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/detail_product_additional_info"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add to cart"
-        android:id="@+id/detail_btnAddToCart"
-        android:layout_gravity="center"/>
-</LinearLayout>
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- CardView bọc ImageView để làm đẹp -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp">
+
+            <ImageView
+                android:id="@+id/detail_search_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/home"/>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Thông tin sản phẩm -->
+        <TextView
+            android:id="@+id/detail_styleid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Style ID: 123456"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/detail_brands_filter_facet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thương hiệu: Nike"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/detail_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Giá: 1,500,000 VNĐ"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/detail_product_additional_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thông tin bổ sung: Giày chạy bộ chất lượng cao."
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Nút Add to Cart -->
+        <Button
+            android:id="@+id/detail_btnAddToCart"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="Thêm vào giỏ hàng"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/button_bg"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+</ScrollView>

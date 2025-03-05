@@ -2,10 +2,12 @@ package com.example.projectprm392.java;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectprm392.R;
 
@@ -31,7 +35,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends AppCompatActivity {
-    ListView lv ;
+    RecyclerView lv ;
+
+    ImageButton btnManageAccount,btnCart ;
     Button btnInsert, btnUpdate, btnDelete, btnSelect;
     EditText txtMa, txtTen, txtSl;
     Context context = this;
@@ -48,10 +54,25 @@ public class HomePage extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        lv=findViewById(R.id.home_lv);
+        lv=findViewById(R.id.home_rv);
         adapter = new HomeAdapter(context,list);
+        lv.setLayoutManager(new LinearLayoutManager(this));
         lv.setAdapter(adapter);
         new FetchProductTask().execute();
+
+        btnManageAccount = findViewById(R.id.btnManageAccount);
+        btnCart = findViewById(R.id.btnCart);
+
+        btnManageAccount.setOnClickListener(v->{
+            Intent i = new Intent(HomePage.this, MyAccountActivity.class);
+            startActivity(i);
+        });
+
+        btnCart.setOnClickListener(v->{
+            Intent i = new Intent(HomePage.this, CartActivity.class);
+            startActivity(i);
+        });
+
 
     }
 
@@ -63,7 +84,7 @@ public class HomePage extends AppCompatActivity {
             StringBuilder response = new StringBuilder();
             try {
                 //duong dan doc du lieu
-                URL url = new URL("https://hungnttg.github.io/shopgiay.json");
+                URL url = new URL("https://khongphuc.github.io/ProjectPRM392/product.json");
                 //ket noi
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
                 connection.setRequestMethod("GET");
