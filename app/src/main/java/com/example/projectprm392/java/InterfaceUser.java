@@ -22,7 +22,5 @@ public interface InterfaceUser {
             @Field("username") String username,
             @Field("password") String password
     );
-
-
-
+    fdfdsfds
 }
