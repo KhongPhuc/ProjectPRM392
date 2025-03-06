@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void findUser() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.33.43.165/0api8/login.php/")
+                .baseUrl("http://192.168.1.6/0api8/login.php/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

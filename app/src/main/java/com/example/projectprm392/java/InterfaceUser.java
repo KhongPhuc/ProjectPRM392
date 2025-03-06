@@ -9,11 +9,12 @@ public interface InterfaceUser {
     @FormUrlEncoded
     @POST("register.php")
     Call<UserResponse> register(
-            @Field("username") String username,
-            @Field("password") String password,
-            @Field("name") String name,
-            @Field("phone") String phone,
-            @Field("address") String address
+            @Field("Username") String username,
+            @Field("Password") String password,
+            @Field("FullName") String name,
+            @Field("Email") String email,
+            @Field("Phone") String phone,
+            @Field("Address") String address
     );
 
     @FormUrlEncoded
@@ -22,5 +23,4 @@ public interface InterfaceUser {
             @Field("username") String username,
             @Field("password") String password
     );
-    fdfdsfds
 }

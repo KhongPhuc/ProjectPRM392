@@ -24,7 +24,7 @@ public class SignUp extends AppCompatActivity {
 
     String result;
     User user;
-    EditText name, username, password, phone, address;
+    EditText name, username, password, phone, address, repassword, email;
     Button btnRegister_signup;
 
     TextView kq;
@@ -38,6 +38,7 @@ public class SignUp extends AppCompatActivity {
         name = findViewById(R.id.name_signup);
         username = findViewById(R.id.username_signup);
         password = findViewById(R.id.password_signup);
+        email = findViewById(R.id.email_signup);
         phone = findViewById(R.id.phone_signup);
         address = findViewById(R.id.address_signup);
 
@@ -60,18 +61,19 @@ public class SignUp extends AppCompatActivity {
         u.setUsername(username.getText().toString());
         u.setPassword(password.getText().toString());
         u.setName(name.getText().toString());
+        u.setEmail(email.getText().toString());
         u.setPhone(phone.getText().toString());
         u.setAddress(address.getText().toString());
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.33.43.165/0api8/register.php/").
+                .baseUrl("http://192.168.1.6/0api8/register.php/").
                 addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         InterfaceUser interfaceUser = retrofit.create(InterfaceUser.class);
 
         Call<UserResponse> call = interfaceUser.register(u.getUsername()
-                ,u.getPassword(), u.getName(), u.getPhone(),u.getPassword());
+                ,u.getPassword(), u.getName(), u.getEmail(), u.getPhone(),u.getPassword());
 
         call.enqueue(new Callback<UserResponse>() {
             @Override
@@ -92,34 +94,34 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-    private boolean validateInput() {
-        String email = ema.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
-        String confirmPassword = confirmPasswordEditText.getText().toString().trim();
-        String phone = phoneEditText.getText().toString().trim();
-
-        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText.setError("Email không hợp lệ");
-            return false;
-        }
-
-        if (password.length() < 8 || !password.matches(".*[A-Z].*") || !password.matches(".*\\d.*") || !password.matches(".*[!@#$%^&*+=?-].*")) {
-            passwordEditText.setError("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, số và ký tự đặc biệt");
-            return false;
-        }
-
-        if (!password.equals(confirmPassword)) {
-            confirmPasswordEditText.setError("Mật khẩu xác nhận không khớp");
-            return false;
-        }
-
-        if (!phone.matches("\\d{10,11}")) {
-            phoneEditText.setError("Số điện thoại không hợp lệ (10-11 số)");
-            return false;
-        }
-
-        return true;
-    }
+//    private boolean validateInput() {
+//        String email = ema.getText().toString().trim();
+//        String password = passwordEditText.getText().toString().trim();
+//        String confirmPassword = confirmPasswordEditText.getText().toString().trim();
+//        String phone = phoneEditText.getText().toString().trim();
+//
+//        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+//            emailEditText.setError("Email không hợp lệ");
+//            return false;
+//        }
+//
+//        if (password.length() < 8 || !password.matches(".*[A-Z].*") || !password.matches(".*\\d.*") || !password.matches(".*[!@#$%^&*+=?-].*")) {
+//            passwordEditText.setError("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, số và ký tự đặc biệt");
+//            return false;
+//        }
+//
+//        if (!password.equals(confirmPassword)) {
+//            confirmPasswordEditText.setError("Mật khẩu xác nhận không khớp");
+//            return false;
+//        }
+//
+//        if (!phone.matches("\\d{10,11}")) {
+//            phoneEditText.setError("Số điện thoại không hợp lệ (10-11 số)");
+//            return false;
+//        }
+//
+//        return true;
+//    }
 
 
 }

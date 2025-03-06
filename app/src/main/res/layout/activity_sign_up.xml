@@ -52,6 +52,15 @@
             android:padding="10dp" />
 
         <EditText
+            android:id="@+id/address_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:hint="Address"
+            android:minHeight="48dp"
+            android:padding="10dp" />
+
+        <EditText
             android:id="@+id/username_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +81,7 @@
             android:padding="10dp" />
 
         <EditText
-            android:id="@+id/address_signup"
+            android:id="@+id/repassword_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

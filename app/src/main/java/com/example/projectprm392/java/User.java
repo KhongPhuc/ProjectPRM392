@@ -1,18 +1,26 @@
 package com.example.projectprm392.java;
 
 public class User {
-    private String username, password, name, phone, address;
+    private String username, password, name,email, phone, address;
 
-    public User(String username, String password,
-                String name, String phone, String address) {
+    public User(String username, String password, String name, String email, String phone, String address) {
         this.username = username;
         this.password = password;
         this.name = name;
+        this.email = email;
         this.phone = phone;
         this.address = address;
     }
 
     public User() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAddress() {
