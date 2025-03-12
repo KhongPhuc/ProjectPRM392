@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".java.ChangeInfoActivity"
+    tools:context=".java.Activities.ChangeInfoActivity"
     android:background="@drawable/signup"
     >
 
@@ -66,12 +66,21 @@
         android:inputType="phone"
         android:minHeight="48dp" />
 
+    <EditText
+        android:id="@+id/edtAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Địa chỉ"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
     <Button
         android:id="@+id/btnSaveProfile"
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:text="Lưu Thay Đổi"
+        android:text="Save"
         android:backgroundTint="@color/teal_700"
         android:layout_marginTop="16dp"
         style="@style/CustomButton"

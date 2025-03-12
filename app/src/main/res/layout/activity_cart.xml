@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".java.CartActivity">
+    tools:context=".java.Activities.CartActivity">
 
     <!-- RecyclerView thay cho ListView -->
     <androidx.recyclerview.widget.RecyclerView

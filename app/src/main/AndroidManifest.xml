@@ -16,41 +16,44 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".java.ChangeInfoActivity"
+            android:name=".java.Activities.ChangeInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".java.ChangePassActivity"
+            android:name=".java.Activities.ChangePassActivity"
             android:exported="false" />
         <activity
-            android:name=".java.MyAccountActivity"
-            android:exported="false" />
-        <activity
-            android:name=".java.LoginActivity"
+            android:name=".java.Activities.MyAccountActivity"
             android:exported="true">
 
+        </activity>
+        <activity
+            android:name=".java.Activities.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-        </activity>
-        <activity
-            android:name=".java.DetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".java.CartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".java.HomePage"
-            android:exported="true">
 
         </activity>
         <activity
-            android:name=".java.ForgotPassword"
+            android:name=".java.Activities.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".java.SignUp"
+            android:name=".java.Activities.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".java.Activities.HomePage"
+            android:exported="true">
+
+
+        </activity>
+        <activity
+            android:name=".java.Activities.ForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".java.Activities.SignUp"
             android:exported="false" />
         <activity
             android:name=".java.Login"

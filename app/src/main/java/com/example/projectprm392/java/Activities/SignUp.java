@@ -1,18 +1,19 @@
-package com.example.projectprm392.java;
+package com.example.projectprm392.java.Activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.projectprm392.R;
+import com.example.projectprm392.java.Entities.User;
+import com.example.projectprm392.java.Interfaces.InterfaceUser;
+import com.example.projectprm392.java.Response.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,15 +42,18 @@ public class SignUp extends AppCompatActivity {
         email = findViewById(R.id.email_signup);
         phone = findViewById(R.id.phone_signup);
         address = findViewById(R.id.address_signup);
-
+        repassword = findViewById(R.id.repassword_signup);
         kq = findViewById(R.id.text_mess);
 
         btnRegister_signup = findViewById(R.id.btnRegister_signup);
 
 
-        btnRegister_signup.setOnClickListener(v->{
-            insertUser();
+        btnRegister_signup.setOnClickListener(v -> {
+            if (validateInput()) {
+                insertUser();
+            }
         });
+
 
     }
 
@@ -66,14 +70,14 @@ public class SignUp extends AppCompatActivity {
         u.setAddress(address.getText().toString());
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6/0api8/register.php/").
+                .baseUrl("http://10.33.43.165/0api8/register.php/").
                 addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         InterfaceUser interfaceUser = retrofit.create(InterfaceUser.class);
 
         Call<UserResponse> call = interfaceUser.register(u.getUsername()
-                ,u.getPassword(), u.getName(), u.getEmail(), u.getPhone(),u.getPassword());
+                ,u.getPassword(), u.getName(), u.getEmail(), u.getPhone(),u.getAddress());
 
         call.enqueue(new Callback<UserResponse>() {
             @Override
@@ -94,34 +98,52 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-//    private boolean validateInput() {
-//        String email = ema.getText().toString().trim();
-//        String password = passwordEditText.getText().toString().trim();
-//        String confirmPassword = confirmPasswordEditText.getText().toString().trim();
-//        String phone = phoneEditText.getText().toString().trim();
-//
-//        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-//            emailEditText.setError("Email không hợp lệ");
-//            return false;
-//        }
-//
-//        if (password.length() < 8 || !password.matches(".*[A-Z].*") || !password.matches(".*\\d.*") || !password.matches(".*[!@#$%^&*+=?-].*")) {
-//            passwordEditText.setError("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, số và ký tự đặc biệt");
-//            return false;
-//        }
-//
-//        if (!password.equals(confirmPassword)) {
-//            confirmPasswordEditText.setError("Mật khẩu xác nhận không khớp");
-//            return false;
-//        }
-//
-//        if (!phone.matches("\\d{10,11}")) {
-//            phoneEditText.setError("Số điện thoại không hợp lệ (10-11 số)");
-//            return false;
-//        }
-//
-//        return true;
-//    }
+    private boolean validateInput() {
+        String email1 = email.getText().toString().trim();
+        String password1 = password.getText().toString().trim();
+        String confirmPassword = repassword.getText().toString().trim();
+        String phone1 = phone.getText().toString().trim();
+        String address1 = address.getText().toString().trim();
+        String username1 = username.getText().toString().trim();
+        String fullname = name.getText().toString().trim();
+
+
+        if (email1.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email1).matches()) {
+            email.setError("Email không hợp lệ");
+            return false;
+        }
+
+        if (address1.isEmpty() ) {
+            address.setError("Address không hợp lệ");
+            return false;
+        }
+        if (username1.isEmpty() ) {
+            username.setError("UserName không hợp lệ");
+            return false;
+        }
+        if (fullname.isEmpty() ) {
+            name.setError("fullname không hợp lệ");
+            return false;
+        }
+
+        if (password1.length() < 8 || !password1.matches(".*[A-Z].*") || !password1.matches(".*\\d.*") || !password1.matches(".*[!@#$%^&*+=?-].*")) {
+            password.setError("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, số và ký tự đặc biệt");
+            return false;
+        }
+
+        if (!password1.equals(confirmPassword)) {
+            repassword.setError("Mật khẩu xác nhận không khớp");
+            return false;
+        }
+
+        if (!phone1.trim().matches("^0[0-9]{9,10}$")) {
+            phone.setError("Số điện thoại phải bắt đầu bằng 0 và có 10-11 số");
+            return false;
+        }
+
+
+        return true;
+    }
 
 
 }

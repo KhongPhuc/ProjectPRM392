@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".java.ChangePassActivity"
+    tools:context=".java.Activities.ChangePassActivity"
     android:orientation="vertical"
     android:background="@drawable/signup"
     >
@@ -106,7 +106,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Xác nhận"
+        android:text="Save"
         android:backgroundTint="@color/teal_700"
 
         style="@style/CustomButton"

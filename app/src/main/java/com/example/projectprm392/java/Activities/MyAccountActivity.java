@@ -1,16 +1,13 @@
-package com.example.projectprm392.java;
+package com.example.projectprm392.java.Activities;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.projectprm392.R;
 
@@ -33,13 +30,17 @@ public class MyAccountActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmail);
         txtPhone = findViewById(R.id.txtPhone);
 
-        txtName.setText("Khong Manh Phuc");
-        txtEmail.setText("phuc@gmail.com");
-        txtPhone.setText("0987654321");
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        txtName.setText(sharedPreferences.getString("fullname", "Chưa có tên"));
+        txtEmail.setText(sharedPreferences.getString("email", "Chưa có email"));
+        txtPhone.setText(sharedPreferences.getString("phone" ,"Chưa có phone" ));
 
 
         // chuyen sang trang edit myacount
         btnEditProfile.setOnClickListener(v->{
+
+
+
             Intent i = new Intent(MyAccountActivity.this, ChangeInfoActivity.class);
             startActivity(i);
 
@@ -47,13 +48,27 @@ public class MyAccountActivity extends AppCompatActivity {
 
         // chuyen sang trang changePassWord
         btnChangePassword.setOnClickListener(v->{
+
+
             Intent i = new Intent(MyAccountActivity.this, ChangePassActivity.class);
             startActivity(i);
         });
 
-
-
-
-
+        btnLogout.setOnClickListener(v->{
+            logout();
+        });
     }
+
+    private void logout() {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear(); // Xóa thông tin đăng nhập
+        editor.apply();
+
+        // Quay lại màn hình đăng nhập
+        Intent intent = new Intent(MyAccountActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

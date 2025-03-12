@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/light_gray"
-    tools:context=".java.MyAccountActivity"
+    tools:context=".java.Activities.MyAccountActivity"
     android:id="@+id/main"
     android:padding="20dp">
 

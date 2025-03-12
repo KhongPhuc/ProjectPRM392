@@ -1,15 +1,46 @@
-package com.example.projectprm392.java;
+package com.example.projectprm392.java.Entities;
+
+import com.google.gson.annotations.SerializedName;
 
 public class User {
-    private String username, password, name,email, phone, address;
+    @SerializedName("UserID")  // Ánh xạ đúng chữ hoa
+    private int UserID;
 
-    public User(String username, String password, String name, String email, String phone, String address) {
+    @SerializedName("Username")  // JSON trả về "Username", nên phải khớp
+    private String username;
+    @SerializedName("Password")  // JSON trả về "Username", nên phải khớp
+    private String password;
+    @SerializedName("FullName")
+    private String name;
+
+    @SerializedName("Email")
+    private String email;
+
+    @SerializedName("Phone")
+    private String phone;
+
+    @SerializedName("Address")
+    private String address;
+
+    @SerializedName("Role")
+    private String role;
+
+    public User(String username, String password, String name, String email, String phone, String address, int userID) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
+        UserID = userID;
+    }
+
+    public int getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(int userID) {
+        UserID = userID;
     }
 
     public User() {

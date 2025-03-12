@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="java.DetailActivity"
+    tools:context=".java.Activities.DetailActivity"
     android:padding="16dp">
 
     <LinearLayout
@@ -26,20 +26,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/home"/>
+                android:src="@drawable/logo"/>
         </androidx.cardview.widget.CardView>
 
         <!-- Thông tin sản phẩm -->
-        <TextView
-            android:id="@+id/detail_styleid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Style ID: 123456"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:padding="8dp"
-            android:layout_marginBottom="8dp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/detail_styleid"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Style ID: 123456"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:padding="8dp"-->
+<!--            android:layout_marginBottom="8dp"/>-->
 
         <TextView
             android:id="@+id/detail_brands_filter_facet"

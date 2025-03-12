@@ -1,4 +1,4 @@
-package com.example.projectprm392.java;
+package com.example.projectprm392.java.Adap;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectprm392.R;
+import com.example.projectprm392.java.Entities.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
@@ -41,23 +43,23 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         Product currentProduct = products.get(position);
 
         // Hiển thị thông tin sản phẩm
-        Picasso.get().load(currentProduct.getSearch_image()).into(holder.imgProduct);
-        holder.tvProductName.setText(currentProduct.getName());
-        holder.tvProductPrice.setText("55$");
-        holder.tvQuantity.setText(String.valueOf(currentProduct.getQuanlity()));
+        Picasso.get().load(currentProduct.getImageURL()).into(holder.imgProduct);
+        holder.tvProductName.setText(currentProduct.getProductName());
+        holder.tvProductPrice.setText(String.format(Locale.getDefault(), "$%.2f", currentProduct.getPrice()));
+        holder.tvQuantity.setText(String.valueOf(currentProduct.getStockQuantity()));
 
         // Sự kiện tăng số lượng
         holder.btnIncrease.setOnClickListener(v -> {
-            currentProduct.setQuanlity(currentProduct.getQuanlity() + 1);
-            holder.tvQuantity.setText(String.valueOf(currentProduct.getQuanlity()));
+            currentProduct.setStockQuantity(currentProduct.getStockQuantity() + 1);
+            holder.tvQuantity.setText(String.valueOf(currentProduct.getStockQuantity()));
             updateTotalPrice();
         });
 
         // Sự kiện giảm số lượng
         holder.btnDecrease.setOnClickListener(v -> {
-            if (currentProduct.getQuanlity() > 1) {
-                currentProduct.setQuanlity(currentProduct.getQuanlity() - 1);
-                holder.tvQuantity.setText(String.valueOf(currentProduct.getQuanlity()));
+            if (currentProduct.getStockQuantity() > 1) {
+                currentProduct.setStockQuantity(currentProduct.getStockQuantity() - 1);
+                holder.tvQuantity.setText(String.valueOf(currentProduct.getStockQuantity()));
                 updateTotalPrice();
             }
         });
@@ -65,8 +67,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         // Xóa sản phẩm khỏi giỏ hàng
         holder.btnDelete.setOnClickListener(v -> {
             products.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, products.size());
+            notifyDataSetChanged(); // Cập nhật toàn bộ danh sách giỏ hàng
             updateTotalPrice();
         });
     }
@@ -79,10 +80,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     // Cập nhật tổng tiền
     private void updateTotalPrice() {
         double total = 0;
-        for (Product p : CartManager.getInstance().getCartItems()) {
-            total += 5 * p.getQuanlity();
+        for (Product p : products) {
+            total += p.getPrice() * p.getStockQuantity(); // Tính đúng giá sản phẩm
         }
-        tvTotalPrice.setText("Total: $" + total);
+        tvTotalPrice.setText(String.format(Locale.getDefault(), "Total: $%.2f", total));
     }
 
     // ViewHolder để giữ view con

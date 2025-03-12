@@ -1,6 +1,6 @@
-package com.example.projectprm392.java;
+package com.example.projectprm392.java.Response;
 
-import java.util.List;
+import com.example.projectprm392.java.Entities.User;
 
 public class UserResponse {
     private User user;

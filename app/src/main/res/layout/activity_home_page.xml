@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/homepage"
-    tools:context=".java.HomePage">
+    tools:context=".java.Activities.HomePage">
 
     <!-- Thanh chứa nút giỏ hàng và quản lý tài khoản -->
     <LinearLayout
@@ -24,14 +24,15 @@
                 android:layout_marginRight="210dp"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="4dp">
+
                 <ImageButton
                     android:id="@+id/btnLogo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
                     android:background="@null"
-                    android:src="@drawable/img_2"
-                    android:contentDescription="Quản lý tài khoản"/>
+                    android:contentDescription="Quản lý tài khoản"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -65,7 +66,7 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:background="@null"
-                    android:src="@drawable/img_2"
+                    android:src="@drawable/logo_account"
                     android:contentDescription="Quản lý tài khoản"/>
 
             </androidx.cardview.widget.CardView>
@@ -73,17 +74,39 @@
     </LinearLayout>
 
     <!-- Thanh tìm kiếm -->
-    <EditText
-        android:id="@+id/etSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tìm kiếm sản phẩm..."
-        android:drawableStart="@android:drawable/ic_search_category_default"
-        android:padding="2dp"
-        android:background="@android:drawable/editbox_background"
-        android:layout_marginBottom="25dp"/>
 
     <!-- Danh sách loại phòng -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:orientation="horizontal">
+
+        <!-- Thanh nhập tìm kiếm -->
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Tìm kiếm sản phẩm..."
+            android:minHeight="48dp"
+            android:padding="10dp"
+            android:textSize="16sp" />
+
+        <!-- Nút tìm kiếm -->
+        <ImageButton
+            android:id="@+id/btnSearch"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:src="@android:drawable/ic_menu_search"
+            android:contentDescription="Tìm kiếm"/>
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -92,7 +115,14 @@
         android:gravity="center_horizontal"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="-20dp">
+        android:layout_marginTop="-20dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/noidung"
+            />
 
         <ImageButton
             android:id="@+id/btnSony"
