@@ -70,7 +70,7 @@ public class SignUp extends AppCompatActivity {
         u.setAddress(address.getText().toString());
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.33.43.165/0api8/register.php/").
+                .baseUrl("http://192.168.1.6/0api8/register.php/").
                 addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -109,35 +109,35 @@ public class SignUp extends AppCompatActivity {
 
 
         if (email1.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email1).matches()) {
-            email.setError("Email không hợp lệ");
+            email.setError("Email Invalid ");
             return false;
         }
 
         if (address1.isEmpty() ) {
-            address.setError("Address không hợp lệ");
+            address.setError("Address Invalid ");
             return false;
         }
         if (username1.isEmpty() ) {
-            username.setError("UserName không hợp lệ");
+            username.setError("UserName Invalid ");
             return false;
         }
         if (fullname.isEmpty() ) {
-            name.setError("fullname không hợp lệ");
+            name.setError("Fullname Invalid ");
             return false;
         }
 
         if (password1.length() < 8 || !password1.matches(".*[A-Z].*") || !password1.matches(".*\\d.*") || !password1.matches(".*[!@#$%^&*+=?-].*")) {
-            password.setError("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, số và ký tự đặc biệt");
+            password.setError("Password must be at least 8 characters, including uppercase letters, numbers and special characters");
             return false;
         }
 
         if (!password1.equals(confirmPassword)) {
-            repassword.setError("Mật khẩu xác nhận không khớp");
+            repassword.setError("Confirmation password does not match");
             return false;
         }
 
         if (!phone1.trim().matches("^0[0-9]{9,10}$")) {
-            phone.setError("Số điện thoại phải bắt đầu bằng 0 và có 10-11 số");
+            phone.setError("Phone number must start with 0 and have 10-11 digits");
             return false;
         }
 

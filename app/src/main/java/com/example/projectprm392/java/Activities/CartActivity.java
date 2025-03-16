@@ -1,5 +1,6 @@
 package com.example.projectprm392.java.Activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class CartActivity extends AppCompatActivity {
     Button btnPay, btnHome;
     List<Product> cartItem;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,8 +75,13 @@ public class CartActivity extends AppCompatActivity {
 
         // Khi nhấn nút Thanh toán
         btnPay.setOnClickListener(v -> {
-            placeOrder(cartItem);
+            if (cartItem == null || cartItem.isEmpty()) {
+                Toast.makeText(this, "Cart is empty! Please select a product.", Toast.LENGTH_SHORT).show();
+            } else {
+                placeOrder(cartItem);
+            }
         });
+
 
         // Khi nhấn nút Home
         btnHome.setOnClickListener(v -> {
@@ -100,7 +107,7 @@ public class CartActivity extends AppCompatActivity {
 
     public void placeOrder(List<Product> cartItems) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.33.43.165/0api8/")
+                .baseUrl("http://192.168.1.6/0api8/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -124,17 +131,21 @@ public class CartActivity extends AppCompatActivity {
         Order order = new Order(userID, totalAmount, orderDetails);
 
         // ✅ Thêm log để kiểm tra dữ liệu gửi đi
-        Gson gson = new Gson();
-        String json = gson.toJson(order);
-        Log.d("OrderJSON", json);  // Xem log trong Logcat với tag "OrderJSON"
+//        Gson gson = new Gson();
+//        String json = gson.toJson(order);
+//        Log.d("OrderJSON", json);  // Xem log trong Logcat với tag "OrderJSON"
 
         Call<OrderResponse> call = interfaceOrder.createOrder(order);
         call.enqueue(new Callback<OrderResponse>() {
             @Override
             public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Toast.makeText(CartActivity.this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CartActivity.this, HomePage.class);
+                    Log.d("API_RESPONSE", new Gson().toJson(response.body()));
+                    int orderID = response.body().getOrderID(); // ✅ Lấy OrderID từ API trả về
+
+                    Toast.makeText(CartActivity.this, "Order successful!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CartActivity.this, MyOrderActivity.class);
+                    intent.putExtra("orderID", orderID); // ✅ Gửi OrderID đúng
                     startActivity(intent);
                 } else {
                     try {

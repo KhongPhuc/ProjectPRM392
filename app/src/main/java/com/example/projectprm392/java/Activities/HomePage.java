@@ -35,13 +35,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomePage extends AppCompatActivity {
     RecyclerView lv ;
 
-    ImageButton btnManageAccount,btnCart, btnSony, btnSamsung, btnXiaomi, btnToshiba, btnSearch ;
+    ImageButton btnManageAccount,btnCart, btnSony, btnSamsung, btnXiaomi, btnToshiba, btnSearch, btnchat ;
     EditText txtMa, txtTen, txtSl, search;
     Context context = this;
     HomeAdapter adapter;
     List<Product> list = new ArrayList<>() ;
 
-    String url = "http://10.33.43.165/0api8/";
+    String url = "http://192.168.1.6/0api8/";
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,13 @@ public class HomePage extends AppCompatActivity {
         btnToshiba = findViewById(R.id.btnToshiba);
         btnSearch = findViewById(R.id.btnSearch);
         search = findViewById(R.id.etSearch);
+        btnchat = findViewById(R.id.btnchat);
+
+
+        btnchat.setOnClickListener(v ->{
+            Intent intent = new Intent(HomePage.this, ChatActivity.class);
+            startActivity(intent);
+        });
 
         btnSearch.setOnClickListener(v->{
             String result = search.getText().toString();

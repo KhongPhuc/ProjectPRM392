@@ -80,19 +80,20 @@
                 android:backgroundTint="@android:color/holo_blue_dark"
                 android:textColor="@android:color/white"
                 tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
 
+            <ImageButton
+                android:id="@+id/btn_remove"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="Xóa sản phẩm"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ee35f3fe27bbc8c0428772bec69bec48_w"
+                tools:ignore="TouchTargetSizeCheck"
+                />
+        </LinearLayout>
         <!-- Nút xóa sản phẩm -->
-        <ImageButton
-            android:id="@+id/btn_remove"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:background="?attr/selectableItemBackground"
-            android:contentDescription="Xóa sản phẩm"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ee35f3fe27bbc8c0428772bec69bec48_w"
-            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
 </LinearLayout>

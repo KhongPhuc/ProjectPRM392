@@ -3,6 +3,7 @@ package com.example.projectprm392.java.Activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -44,12 +45,13 @@ public class ChangePassActivity extends AppCompatActivity {
         btnChangePassword = findViewById(R.id.btnChangePassword);
 
         btnChangePassword.setOnClickListener(v->{
-            updatePass(userName);
+            if(validateInput()){
+                updatePass(userName);
+            }
         });
 
-
-
     }
+
 
     public void updatePass(String username){
         edtOldPassword = findViewById(R.id.edtOldPassword);
@@ -62,12 +64,12 @@ public class ChangePassActivity extends AppCompatActivity {
 
         // Kiểm tra mật khẩu mới có trùng nhau không
         if (!newPass.equals(confirmPass)) {
-            Toast.makeText(this, "Mật khẩu mới không trùng khớp!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "New password does not match!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.33.43.165/0api8/")
+                .baseUrl("http://192.168.1.6/0api8/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -80,12 +82,12 @@ public class ChangePassActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     UserResponse userResponse = response.body();
                     if ("Đổi mật khẩu thành công".equals(userResponse.getMessage())) { // Kiểm tra phản hồi từ API
-                        Toast.makeText(ChangePassActivity.this, "Đổi mật khẩu thành công!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePassActivity.this, "Password changed successfully!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(ChangePassActivity.this, HomePage.class);
                         startActivity(intent);
                         finish();
                     } else {
-                        Toast.makeText(ChangePassActivity.this, "Mật khẩu cũ không đúng!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePassActivity.this, "Old password is incorrect!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(ChangePassActivity.this, "Lỗi từ server!", Toast.LENGTH_SHORT).show();
@@ -98,5 +100,24 @@ public class ChangePassActivity extends AppCompatActivity {
             }
         });
     }
+    private boolean validateInput() {
+        edtNewPassword = findViewById(R.id.edtNewPassword);
+        edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
 
+        String password1 = edtNewPassword.getText().toString().trim();
+        String confirmPassword = edtConfirmPassword.getText().toString().trim();
+
+
+        if (password1.length() < 8 || !password1.matches(".*[A-Z].*") || !password1.matches(".*\\d.*") || !password1.matches(".*[!@#$%^&*+=?-].*")) {
+            edtNewPassword.setError("Password must be at least 8 characters, including uppercase letters, numbers and special characters");
+            return false;
+        }
+
+        if (!password1.equals(confirmPassword)) {
+            edtConfirmPassword.setError("Confirmation password does not match");
+            return false;
+        }
+
+        return true;
+    }
 }

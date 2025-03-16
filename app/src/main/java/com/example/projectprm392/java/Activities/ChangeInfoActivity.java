@@ -3,6 +3,7 @@ package com.example.projectprm392.java.Activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -45,7 +46,9 @@ public class ChangeInfoActivity extends AppCompatActivity {
         btnSaveProfile = findViewById(R.id.btnSaveProfile);
 
         btnSaveProfile.setOnClickListener(v->{
-            updateUser(userName);
+            if(validateInput()){
+                updateUser(userName);
+            }
         });
 
 
@@ -61,7 +64,7 @@ public class ChangeInfoActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edtEmail);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.33.43.165/0api8/").
+                .baseUrl("http://192.168.1.6/0api8/").
                 addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -85,5 +88,34 @@ public class ChangeInfoActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private boolean validateInput() {
+        String email1 = edtEmail.getText().toString().trim();
+        String phone1 = edtPhone.getText().toString().trim();
+        String address1 = edtAddress.getText().toString().trim();
+        String fullname = edtFullName.getText().toString().trim();
+
+
+
+        if (email1.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email1).matches()) {
+            edtEmail.setError("Invalid email");
+            return false;
+        }
+        if (address1.isEmpty() ) {
+            edtAddress.setError("Invalid address");
+            return false;
+        }
+        if (fullname.isEmpty() ) {
+            edtFullName.setError("Fullname is invalid");
+            return false;
+        }
+        if (!phone1.trim().matches("^0[0-9]{9,10}$")) {
+            edtPhone.setError("Phone number must start with 0 and have 10-11 digits");
+            return false;
+        }
+
+
+        return true;
     }
 }

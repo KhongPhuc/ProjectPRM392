@@ -17,7 +17,7 @@ public class CartManager {
     private int userID;
     private Context context;
 
-    private CartManager(Context context, int userID) {
+    public CartManager(Context context, int userID) {
         this.context = context;
         this.userID = userID;
         this.sharedPreferences = context.getSharedPreferences("CartData", Context.MODE_PRIVATE);
@@ -61,7 +61,7 @@ public class CartManager {
         Gson gson = new Gson();
         String json = gson.toJson(cartItems);
         editor.putString("cart_" + userID, json); // Lưu theo userID
-        editor.apply();
+        editor.apply(); // Đảm bảo lưu ngay lập tức
     }
 
     private List<Product> loadCart() {

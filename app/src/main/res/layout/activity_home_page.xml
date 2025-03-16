@@ -71,6 +71,24 @@
 
             </androidx.cardview.widget.CardView>
 
+
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="4dp">
+            <ImageButton
+                android:id="@+id/btnchat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@null"
+                android:src="@drawable/img_10"
+                android:contentDescription="Quản lý tài khoản"/>
+
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
     <!-- Thanh tìm kiếm -->
