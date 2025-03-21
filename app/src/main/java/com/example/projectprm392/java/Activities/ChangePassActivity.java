@@ -69,7 +69,7 @@ public class ChangePassActivity extends AppCompatActivity {
         }
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6/0api8/")
+                .baseUrl("http://192.168.1.4/0api8/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

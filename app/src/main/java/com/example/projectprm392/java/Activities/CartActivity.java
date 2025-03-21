@@ -38,7 +38,7 @@ public class CartActivity extends AppCompatActivity {
     RecyclerView lv;
     CartAdapter adapter;
     TextView tvTotalPrice;
-    Button btnPay, btnHome;
+    Button btnPay, btnHome, btn_paypal;
     List<Product> cartItem;
 
     @SuppressLint("MissingInflatedId")
@@ -51,7 +51,7 @@ public class CartActivity extends AppCompatActivity {
         tvTotalPrice = findViewById(R.id.tv_total_price);
         btnPay = findViewById(R.id.btn_pay);
         btnHome = findViewById(R.id.btn_home);
-
+        btn_paypal = findViewById(R.id.btn_paypal);
         SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
         int userID = sharedPreferences.getInt("userID", -1);
 
@@ -88,6 +88,11 @@ public class CartActivity extends AppCompatActivity {
             Intent intent = new Intent(CartActivity.this, HomePage.class);
             startActivity(intent);
         });
+
+        btn_paypal.setOnClickListener(v->{
+            Intent intent = new Intent(CartActivity.this, PayPalActivity.class);
+            startActivity(intent);
+        });
     }
 
     // Hàm tính tổng tiền
@@ -107,7 +112,7 @@ public class CartActivity extends AppCompatActivity {
 
     public void placeOrder(List<Product> cartItems) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6/0api8/")
+                .baseUrl("http://192.168.1.4/0api8/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

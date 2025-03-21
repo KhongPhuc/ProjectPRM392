@@ -105,7 +105,7 @@ public class MyOrderActivity extends AppCompatActivity {
         Log.d("DEBUG_CALL", "Gọi API với orderID: " + orderID);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6/0api8/") // Kiểm tra lại base URL
+                .baseUrl("http://192.168.1.4/0api8/") // Kiểm tra lại base URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

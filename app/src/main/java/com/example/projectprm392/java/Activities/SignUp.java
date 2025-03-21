@@ -70,7 +70,7 @@ public class SignUp extends AppCompatActivity {
         u.setAddress(address.getText().toString());
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.6/0api8/register.php/").
+                .baseUrl("http://192.168.1.4/0api8/register.php/").
                 addConverterFactory(GsonConverterFactory.create())
                 .build();
 

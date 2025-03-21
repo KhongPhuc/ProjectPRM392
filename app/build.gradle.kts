@@ -41,6 +41,10 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.paypal.sdk)
+    implementation(libs.google.maps)
+    implementation(libs.material)
     implementation(libs.retrofit.gson)
     implementation(libs.retrofit)
     implementation(libs.picasso)
